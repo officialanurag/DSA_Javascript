@@ -30,37 +30,53 @@ function linkedList(arr) {
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
-    try {
-        let opList1 = list1;
-        let opList2 = list2;
+    
+    let temp1 = list1;
+    let temp2 = list2;
 
-        while (opList2 !== null) {
-            if (opList1.val <= opList2.val) {
-                console.log("if check", opList1.val, opList2.val);
-
-                let temp = opList1.next;
-                console.log("temp: ", list(temp));
-
-                opList1.next = opList2;
-                opList1 = temp;
-                console.log("opList1: ", list(opList1));
-                console.log("opList2: ", list(opList2));
-                console.log("list1: ", list(list1));
-                opList2 = opList2.next;
+    while (temp1) {
+        let count = 0;
+        while (temp2) {
+            count++;
+            if (temp1 == null) {
+                break;
             }
 
-            // Set operating node of opList2 to next node.
+            if (temp1.val <= temp2.val) {
+                
+                if (count > 1) {
+
+                }
+                console.log("Count: ", count)
+                console.log("1. temp1: ", list(temp1));
+                let tmp = temp1.next;
+                console.log("2. tmp: ", list(tmp));
+                temp1.next = temp2;
+                console.log("3. temp1: ", list(temp1));
+                temp2 = temp1;
+                console.log("4. temp2: ", list(temp2));
+                temp1 = tmp;
+                console.log("5. temp1: ", list(temp1));
+                console.log("\n\n");
+            }
+
+            temp2 = temp2.next;
         }
 
-        return new ListNode(0, null);
-    } catch (e) {
-        console.log(e)
+        if (temp1 == null) {
+            break;
+        }
+        temp1 = temp1.next;
     }
+
+    // console.log("temp2: ", list(temp2));
+    // console.log("list1: ", list(list1));
+    // console.log("list2: ", list(list2))
 };
 
-const list1 = linkedList([-9, 3]);
-const list2 = linkedList([5, 7]);
-
-console.log(
-    list(mergeTwoLists(list1, list2))
-);
+const list1 = linkedList([1, 2, 4]);
+const list2 = linkedList([1, 3, 4]);
+const output = mergeTwoLists(list1, list2);
+// console.log(
+//     list(output)
+// );
